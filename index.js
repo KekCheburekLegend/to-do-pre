@@ -12,14 +12,14 @@ const formElement = document.querySelector(".to-do__form");
 const inputElement = document.querySelector(".to-do__input");
 
 function loadTasks() {
-	if (localStorage.getItem('tasks') === null) {	
-    return items;
+	const tasksJson = localStorage.getItem('tasks');
+	if (tasksJson === null) {	
+		return items;
 	}
 	else {
-    return JSON.parse(localStorage.getItem('tasks'));
+		return JSON.parse(tasksJson);
 	}
 }
-
 function createItem(item) {
 	const template = document.getElementById("to-do__item-template");
 	const clone = template.content.querySelector(".to-do__item").cloneNode(true);
@@ -46,7 +46,7 @@ function createItem(item) {
   const editButton = clone.querySelector(".to-do__item-button_type_edit");
   
   editButton.addEventListener('click', (evt) => {
-	evt.preventDefault;
+	evt.preventDefault();
 	textElement.setAttribute('contenteditable', 'true') // право на редактирование текста элемента *_*
 	textElement.focus()
 	})
